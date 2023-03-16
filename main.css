@@ -1,0 +1,54 @@
+.Ec-Container {
+  padding: 0 30px;
+}
+
+.Ec-Content {
+  width: 300px;
+}
+
+.Ec-Display-Area {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background-color: #000000;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  height: 40px;
+}
+
+.Indicate {
+  display: inline-block;
+  padding: 5px;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.Ec-Buttons {
+  text-align: center;
+}
+
+.Ec-Buttons button {
+  background-color: #DFDFDF;
+  width: 23%;
+  border: 0px solid #000000;
+  border-radius: 5px;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.Ec-Buttons button:hover {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.Ec-Buttons-Line1, .Ec-Buttons-Line2, .Ec-Buttons-Line3, .Ec-Buttons-Line4 {
+  margin-bottom: 5px;
+}
+
+.Ec-Buttons-Line5 button {
+  width: 48%;
+}
+
+
