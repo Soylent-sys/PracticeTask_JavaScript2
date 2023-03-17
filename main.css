@@ -43,6 +43,11 @@
   color: #ffffff;
 }
 
+.Ec-Buttons button:active {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
 .Ec-Buttons-Line1, .Ec-Buttons-Line2, .Ec-Buttons-Line3, .Ec-Buttons-Line4 {
   margin-bottom: 5px;
 }
