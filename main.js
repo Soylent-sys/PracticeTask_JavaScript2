@@ -1,9 +1,9 @@
 
 //入力モードの定義と初期値設定(不正入力の制御に使用)
-let initial_mode           = true;  // 初期状態を表す（ディスプレイが0）
-let afterPoint_mode        = false; // 小数点以下入力状態
-let noOperator_mode        = false; // 演算子の入力禁止状態
-let noOperatorAfter0x_mode = false; // 演算子後の0x入力禁止状態 
+let initial_mode            = true;  // 初期状態を表す（ディスプレイが0）
+let afterPoint_mode         = false; // 小数点以下入力状態
+let afterOperatorInput_mode = false; // 演算子入力後直後の状態
+let noOperatorAfter0x_mode  = false; // 演算子後の0x入力禁止状態 
 
 
 // JQuery
@@ -33,8 +33,8 @@ $(document).ready(function() {
       initial_mode = false;
     }
     
-    if ( noOperator_mode === true ) {
-      noOperator_mode = false;
+    if ( afterOperatorInput_mode === true ) {
+      afterOperatorInput_mode = false;
     }
     
     if ( noOperatorAfter0x_mode === true ) {
@@ -64,8 +64,8 @@ $(document).ready(function() {
       $("#display").append(myNum);
     }
     
-    if ( noOperator_mode === true ) {
-      noOperator_mode = false;
+    if ( afterOperatorInput_mode === true ) {
+      afterOperatorInput_mode = false;
     }
   }
   
@@ -83,7 +83,7 @@ $(document).ready(function() {
       $("#display").append(myNum);
     } else if ( initial_mode === true ) {
       return;
-    } else if ( noOperator_mode === true ) {
+    } else if ( afterOperatorInput_mode === true ) {
       return;
     } else if ( noOperatorAfter0x_mode === true && lastCha === "0" ) {
       return;
@@ -91,8 +91,8 @@ $(document).ready(function() {
       $("#display").append(myNum);
     }
     
-    if ( noOperator_mode === true ) {
-      noOperator_mode = false;
+    if ( afterOperatorInput_mode === true ) {
+      afterOperatorInput_mode = false;
     }
   }
   
@@ -106,7 +106,7 @@ $(document).ready(function() {
       return;
     } else if ( nowDisplayText === "Infinity" ) {
       return;
-    } else if ( noOperator_mode === true ) {
+    } else if ( afterOperatorInput_mode === true ) {
       return;
     } else if ( afterPoint_mode === true ) {
       return;
@@ -133,16 +133,20 @@ $(document).ready(function() {
       return;
     } else if ( nowDisplayText === "Infinity" ) {
       return;
-    } else if ( noOperator_mode === true ) {
+    } else if ( myCha === lastCha ) {
       return;
     } else if ( lastCha === "." ) {
       return;
+    } else if ( afterOperatorInput_mode === true ) { // 入力直後の演算子を別の演算子に更新
+      const replaceText = nowDisplayText.slice(0, -1) + myCha;
+      $("#display").text(replaceText);
     } else {
       $("#display").append(myCha);
     }
     
-    noOperator_mode        = true;
-    noOperatorAfter0x_mode = true;
+    afterOperatorInput_mode = true;
+    noOperatorAfter0x_mode  = true;
+    
     if ( afterPoint_mode === true ) {
       afterPoint_mode = false;
     }
@@ -221,14 +225,14 @@ $(document).ready(function() {
   });
   
   
-  // クリア
+  // 表示のクリア
   $("#button-AllClear").click(function() {
     $("#display").text("0");
     
-    initial_mode           = true;
-    afterPoint_mode        = false;
-    noOperator_mode        = false;
-    noOperatorAfter0x_mode = false;
+    initial_mode            = true;
+    afterPoint_mode         = false;
+    afterOperatorInput_mode = false;
+    noOperatorAfter0x_mode  = false;
   });
   
   
@@ -236,17 +240,16 @@ $(document).ready(function() {
   $("#button-Result").click(function() {
     const nowDisplayText = $("#display").text();
     const lastCha = nowDisplayText.slice(-1);
-    let ResultNum;
-    let ResultDisplay;
+    let ResultNum;      // 計算結果格納変数
+    let ResultDisplay;  // 計算結果のディスプレイ内容取得用変数
     
-    if ( noOperator_mode === true ) {
+    if ( afterOperatorInput_mode === true ) {
       return;
     } else if ( lastCha === "." ) {
       return;
     } else {
-      ResultNum = new Function("return " + nowDisplayText);
+      ResultNum = new Function("return " + nowDisplayText); // ディスプレイ上の文字列を計算式として評価
       $("#display").text(ResultNum);
-      
       ResultDisplay = $("#display").text();
     }
     
