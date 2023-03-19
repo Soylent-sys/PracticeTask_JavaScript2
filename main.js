@@ -155,47 +155,17 @@ $(document).ready(function() {
   
   
   // 各ボタン押下時のイベント動作
-  // 数字
-  $("#button-One").click(function() {
+  // 数字１から９
+  $(".button-1to9").click(function() {
     addNumber1to9(this);
   });
   
-  $("#button-Two").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Three").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Four").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Five").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Six").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Seven").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Eight").click(function() {
-    addNumber1to9(this);
-  });
-  
-  $("#button-Nine").click(function() {
-    addNumber1to9(this);
-  });
-  
+  // 数字0
   $("#button-Zero").click(function() {
     addNumberZero(this);
   });
   
+  // 数字00
   $("#button-ZeroZero").click(function() {
     addNumberZeroZero(this);
   });
@@ -207,20 +177,8 @@ $(document).ready(function() {
   });
   
   
-  //演算子
-  $("#button-Add").click(function() {
-    addOperator(this);
-  });
-  
-  $("#button-Sub").click(function() {
-    addOperator(this);
-  });
-  
-  $("#button-Mul").click(function() {
-    addOperator(this);
-  });
-  
-  $("#button-Div").click(function() {
+  //演算子 +, -, *, /
+  $(".button-Operator").click(function() {
     addOperator(this);
   });
   
