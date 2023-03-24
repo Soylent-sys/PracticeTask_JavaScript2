@@ -1,7 +1,7 @@
 
 //入力モードの定義と初期値設定(不正入力の制御に使用)
-let initial_mode            = true;  // 初期状態を表す（ディスプレイが0）
-let afterPoint_mode         = false; // 小数点以下入力状態
+let initial_mode = true;             // 初期状態を表す（ディスプレイが0）
+let afterPoint_mode = false;         // 小数点以下入力状態
 let afterOperatorInput_mode = false; // 演算子入力後直後の状態
 let noOperatorAfter0x_mode  = false; // 演算子後の0x入力禁止状態 
 
@@ -187,8 +187,8 @@ $(document).ready(function() {
   $("#button-AllClear").click(function() {
     $("#display").text("0");
     
-    initial_mode            = true;
-    afterPoint_mode         = false;
+    initial_mode = true;
+    afterPoint_mode = false;
     afterOperatorInput_mode = false;
     noOperatorAfter0x_mode  = false;
   });
