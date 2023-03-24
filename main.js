@@ -198,28 +198,28 @@ $(document).ready(function() {
   $("#button-Result").click(function() {
     const nowDisplayText = $("#display").text();
     const lastCha = nowDisplayText.slice(-1);
-    let ResultNum;      // 計算結果格納変数
-    let ResultDisplay;  // 計算結果のディスプレイ内容取得用変数
+    let resultNum;      // 計算結果格納変数
+    let resultDisplay;  // 計算結果のディスプレイ内容取得用変数
     
     if ( afterOperatorInput_mode === true ) {
       return;
     } else if ( lastCha === "." ) {
       return;
     } else {
-      ResultNum = new Function("return " + nowDisplayText); // ディスプレイ上の文字列を計算式として評価
-      $("#display").text(ResultNum);
-      ResultDisplay = $("#display").text();
+      resultNum = new Function("return " + nowDisplayText); // ディスプレイ上の文字列を計算式として評価
+      $("#display").text(resultNum);
+      resultDisplay = $("#display").text();
     }
     
-    if ( ResultDisplay === "0" ) {
+    if ( resultDisplay === "0" ) {
       initial_mode = true;
     }
       
-    if ( ResultDisplay.indexOf(".") !== -1 ) {
+    if ( resultDisplay.indexOf(".") !== -1 ) {
       afterPoint_mode = true;
     }
     
-    if ( ResultDisplay === "Infinity" ) {
+    if ( resultDisplay === "Infinity" ) {
       initial_mode = true;
     }
   });
